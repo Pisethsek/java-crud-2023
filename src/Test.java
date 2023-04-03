@@ -5,7 +5,7 @@ public class Test {
         // Student s = new Student(1001, "sek piseth", "male", 21, 120f, false);
         // System.out.println(s);
         Student obj = new Student();
-        // obj.update();
+        obj.update();
         // obj.setId(1006); 1004
         // obj.setName("lay heang");
         // obj.setAge(26);

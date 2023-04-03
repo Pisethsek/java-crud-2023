@@ -115,7 +115,6 @@ public class Student {
         }
     }
 
-
     //get all students in students table
     public List<Student> getAllStudents(){
 
@@ -200,19 +199,39 @@ public class Student {
         setPassed(getPassed());
     }
     
-     //input student update information
-     public void inputDataUpdate(){
+    //input student update information
+    public void inputDataUpdate(){
         Scanner input = new Scanner(System.in);
         setId(getId());
         System.out.print("Enter Name : ");
         setName(input.nextLine());
         System.out.print("Enter Gender : ");
         setGender(input.nextLine());
-        System.out.print("Enter Age  : ");
-        setAge(input.nextInt());
-        System.out.print("Enter Score : ");
-        setScore(input.nextFloat());
+        int age = (int) validate("Enter Age  : ");setAge(age);
+        float sc = validate("Enter Score : ");setScore(sc);
         setPassed(getPassed());
+    }
+
+    //validate input
+    public static float validate(String txt){
+        Scanner cin = new Scanner(System.in);
+        boolean isTrue = false;
+        float number =0;
+        String num;
+
+        do{
+            try {
+                System.out.print(txt);
+                num = cin.nextLine();
+                number = Float.parseFloat(num);
+                isTrue = true;
+            } catch (Exception e) {
+                System.out.println("Please Input Number!!!");
+                isTrue = false;
+            }
+        }while(!isTrue);
+
+        return number;
     }
 
     public Student() {
