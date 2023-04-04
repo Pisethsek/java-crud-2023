@@ -173,6 +173,34 @@ public class Student {
             System.out.println("Not Found This Id!!!");
         }
     }
+
+    //using sql to select by id
+    public void selectStudentById(Integer id){
+        String sql = "SELECT * FROM STUDENTS WHERE id = ?;";
+        try (
+            Connection connection = dataSource().getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        ){
+            preparedStatement.setInt(1, id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            
+            Student st = null;
+            while(resultSet.next()){
+                setId(resultSet.getInt(1));
+                setName(resultSet.getString(2));
+                setGender(resultSet.getString(3));
+                setAge(resultSet.getInt(4));
+                setScore(resultSet.getFloat(5));
+                setPassed(resultSet.getBoolean(6));
+                st = new Student(getId(), getName(), getGender(), getAge(), getScore(), getPassed());
+            }
+
+            System.out.println(st);
+
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+    }
     
     //display
     public void display(){
